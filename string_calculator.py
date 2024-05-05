@@ -15,7 +15,7 @@ def add(numbers: str) -> int:
     return sum(map(lambda x: convert_str_to_number(x), number_list))
 
 
-def get_delimeters_and_sanitize_numbers(numbers: str):
+def get_delimeters_and_sanitize_numbers(numbers: str) -> tuple[list[str], str]:
     allowed_delimiters = [*INITIAL_DELIMETERS]
 
     if not numbers.startswith("//"):
@@ -30,14 +30,14 @@ def get_delimeters_and_sanitize_numbers(numbers: str):
     return allowed_delimiters, replaced_string
 
 
-def convert_str_to_number(x):
+def convert_str_to_number(x: str) -> int:
     try:
         return int(x)
     except:
         raise Exception("Invalid Number")
 
 
-def check_negative_numbers(number_list):
+def check_negative_numbers(number_list: list[int]) -> bool:
     negative_numbers = [i for i in number_list if convert_str_to_number(i) < 0]
     if len(negative_numbers) == 0:
         return False
