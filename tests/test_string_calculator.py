@@ -11,11 +11,16 @@ def test_comma_newline():
     assert add("1,2") == 3
     assert add("1\n2") == 3
     assert add("1\n2") == 3
+    assert add("1\n2,3") == 6
 
 
 def test_invalid_numbers():
     with pytest.raises(Exception) as excinfo:
         add("1,\n")
+    assert str(excinfo.value) == "Invalid Number"
+
+    with pytest.raises(Exception) as excinfo:
+        add("1,")
     assert str(excinfo.value) == "Invalid Number"
 
 
